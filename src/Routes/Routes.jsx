@@ -1,5 +1,6 @@
 import { Route, Switch } from "react-router-dom"
 import styled from "styled-components"
+import { CreateTodo } from "../Components/CreateTodo"
 import { Navbar } from "../Components/Navbar"
 import { Sidebar } from "../Components/Sidebar"
 import { DashboardPage } from "./DashboardPage"
@@ -15,6 +16,10 @@ const Routes = () => {
         <Switch>
           <Route path="/dashboard">
             <DashboardPage />
+          </Route>
+
+          <Route path="/create-new-task">
+            <CreateTodo/>
           </Route>
         </Switch>
       </Wrapper>
@@ -37,5 +42,4 @@ const Conatiner = styled.div`
 
 const Wrapper = styled.div`
   flex:4;
-  /* padding:10px; */
 `

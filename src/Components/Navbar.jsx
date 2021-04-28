@@ -40,4 +40,7 @@ const Container = styled.div`
     color:teal;
     text-decoration:none;
   }
+  a:hover{
+    opacity:0.8
+  }
 `

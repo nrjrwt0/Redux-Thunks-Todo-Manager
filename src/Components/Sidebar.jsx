@@ -67,6 +67,9 @@ const Tags = styled.div`
   button:nth-child(4){
     background-color:#f05945;
   }
+  button:hover{
+    opacity:0.7;
+  }
 `
 
 const Logout = styled.div`
@@ -78,6 +81,9 @@ const Logout = styled.div`
     background-color:#394867;
     color:wheat;
     border:none;
+  }
+  button:hover{
+    opacity:0.7;
   }
 
 `
