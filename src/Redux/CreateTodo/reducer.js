@@ -2,15 +2,17 @@ import {
   ADD_DATE,
   ADD_DESCRIPTION,
   ADD_PROGRESS,
+  ADD_SUBTASK,
   ADD_TAGS,
   ADD_TITLE,
+  UPDATE_SUBTASKS_LIST,
 } from './actionTypes';
 
 const today = new Date();
 const dd = String(today.getDate()).padStart(2, '0');
 const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
 const yyyy = today.getFullYear();
-const date = mm + '/' + dd + '/' + yyyy;
+const date = yyyy + '-' + mm + '-' + dd;
 
 const initState = {
   title: '',
@@ -57,10 +59,16 @@ export const createTodoReducer = (state = initState, { type, payload }) => {
         tags: payload,
       };
     }
-    case ADD_TAGS: {
+    case ADD_SUBTASK: {
       return {
         ...state,
         subtasks: [payload, ...state.subtasks],
+      };
+    }
+    case UPDATE_SUBTASKS_LIST: {
+      return {
+        ...state,
+        subtasks: payload,
       };
     }
     default:

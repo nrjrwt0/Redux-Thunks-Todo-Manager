@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import {v4 as uuid} from 'uuid'
+import { addSubtask, updateSubtasksList } from '../../Redux/CreateTodo/action';
 
 const initState = {
    title : "",
@@ -8,9 +10,12 @@ const initState = {
 }
 
 const Subtasks = () => {
+  const allSubTasksData = useSelector(state => state.subtasks)
   const [subTasksData,setSubTasksData] = useState([]);
   const [subtask,setSubtask] = useState(initState);
   const [isEmpty,setIsEmpty] = useState(false);
+
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const {name,value,type,checked} = e.target;
@@ -39,17 +44,20 @@ const Subtasks = () => {
       id: uuid(),
       ...subtask
     }
-    setSubTasksData([payload,...subTasksData]);
+    dispatch(addSubtask(payload))
+    // setSubTasksData([payload,...subTasksData]);
     setSubtask(initState)
   }
 
   const handleStatusChange = (id) => {
-    const updatedTasksData = subTasksData.map((subtask) => subtask.id === id ? {...subtask,status: !subtask.status} : subtask);
-    setSubTasksData(updatedTasksData)
+    const updatedTasksData = allSubTasksData.map((subtask) => subtask.id === id ? {...subtask,status: !subtask.status} : subtask);
+    dispatch(updateSubtasksList(updatedTasksData))
+    // setSubTasksData(updatedTasksData)
   }
   const handleDelete = (id) => {
-    const updatedTasksData = subTasksData.filter((subtask) => subtask.id !== id);
-    setSubTasksData(updatedTasksData)
+    const updatedTasksData = allSubTasksData.filter((subtask) => subtask.id !== id);
+    dispatch(updateSubtasksList(updatedTasksData))
+    // setSubTasksData(updatedTasksData)
   }
   // const handleChangeSubtask = (id) => {
   //   const updatedTasksData = subTasksData.map((subtask) => subtask.id === id ? {...subtask,status: !subtask.status} : subtask);
@@ -66,7 +74,7 @@ const Subtasks = () => {
           <button>Add</button>
         </Box>
         <SubtasksDiv>
-          {subTasksData.map(({id,title,status}) => {
+          {allSubTasksData.map(({id,title,status}) => {
           return (
             <div key={id}>
               <h5>{title}</h5>

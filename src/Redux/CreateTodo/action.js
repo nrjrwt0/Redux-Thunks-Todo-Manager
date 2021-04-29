@@ -5,6 +5,7 @@ import {
   ADD_SUBTASK,
   ADD_TAGS,
   ADD_TITLE,
+  UPDATE_SUBTASKS_LIST,
 } from './actionTypes';
 
 export const addTitle = (payload) => {
@@ -24,6 +25,13 @@ export const addDescription = (payload) => {
 export const addSubtask = (payload) => {
   return {
     type: ADD_SUBTASK,
+    payload,
+  };
+};
+
+export const updateSubtasksList = (payload) => {
+  return {
+    type: UPDATE_SUBTASKS_LIST,
     payload,
   };
 };
