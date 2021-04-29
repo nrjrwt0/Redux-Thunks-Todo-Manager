@@ -4,8 +4,8 @@ import styled from 'styled-components'
 import { addProgress, addTags } from '../../Redux/CreateTodo/action';
 
 const TagsAndProgress = () => {
-  const progress = useSelector(state => state.progress);
-  const tags = useSelector(state => state.tags);
+  const progress = useSelector(state => state.createTodo.progress);
+  const tags = useSelector(state => state.createTodo.tags);
 
   const dispatch = useDispatch();
 

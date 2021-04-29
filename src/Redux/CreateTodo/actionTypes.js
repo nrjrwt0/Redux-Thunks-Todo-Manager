@@ -5,3 +5,5 @@ export const ADD_PROGRESS = 'ADD_PROGRESS';
 export const ADD_TAGS = 'ADD_TAGS';
 export const ADD_SUBTASK = 'ADD_SUBTASK';
 export const UPDATE_SUBTASKS_LIST = 'UPDATE_SUBTASKS_LIST';
+
+export const RESET_FORM = 'RESET_FORM';
