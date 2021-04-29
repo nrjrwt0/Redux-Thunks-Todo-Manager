@@ -21,7 +21,7 @@ const Todo = () => {
         <div>
           {todos.map(todo =><TaskContainer key={todo.id} label="Todo" {...todo}/>)}
         </div>
-        {todos.length === 0 ? <p>Empty!</p> : null}
+        {todos.length === 0 ? <P>Empty!</P> : null}
       </div>
     </Conatiner>
   )
@@ -47,4 +47,10 @@ const Conatiner = styled.div`
       padding:10px 16px;
    }
   }
+`
+
+const P = styled.p`
+  text-align:center;
+  margin:6px 0px 12px;
+  opacity:0.8;
 `
