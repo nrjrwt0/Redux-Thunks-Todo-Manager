@@ -5,6 +5,7 @@ import {
   ADD_SUBTASK,
   ADD_TAGS,
   ADD_TITLE,
+  RESET_FORM,
   UPDATE_SUBTASKS_LIST,
 } from './actionTypes';
 
@@ -69,6 +70,11 @@ export const createTodoReducer = (state = initState, { type, payload }) => {
       return {
         ...state,
         subtasks: payload,
+      };
+    }
+    case RESET_FORM: {
+      return {
+        initState,
       };
     }
     default:

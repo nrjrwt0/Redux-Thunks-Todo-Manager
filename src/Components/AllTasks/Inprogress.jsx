@@ -12,20 +12,17 @@ const Inprogress = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // dispatch(getTodoRequest());
-    // axios.get(`https://json-server-mocker-neeraj-data.herokuapp.com/todoManager?progress=InProgress`).then((res) => {console.log(res.data); setTodos(res.data); dispatch(getTodoSuccess())})
-    // .catch(() => dispatch(getTodoFailure()));
-
     dispatch(getTodo('InProgress'))
   },[dispatch])
 
   return(
-    <Conatiner>
+    <Conatiner> 
       <div>
         <h2>InProgress</h2>
         <div>
           {inProgressTodos.map(todo =><TaskContainer key={todo.id} label="InProgress" {...todo}/>)}
         </div>
+        {inProgressTodos.length === 0 ? <p>Empty!</p> : null}
       </div>
     </Conatiner>
   )

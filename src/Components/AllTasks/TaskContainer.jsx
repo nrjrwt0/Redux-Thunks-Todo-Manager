@@ -2,12 +2,10 @@ import axios from 'axios';
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { changeProgress } from '../../Redux/Todos/action';
+import { changeProgress, deleteTodo } from '../../Redux/Todos/action';
 
 const TaskContainer = ({label,id,title,description,date,progress,tags,subtasks}) => {
   const {personal,official,others} = tags;
-
-  console.log(label)
   
   const dispatch = useDispatch();
 
@@ -18,6 +16,10 @@ const TaskContainer = ({label,id,title,description,date,progress,tags,subtasks})
     dispatch(changeProgress(todoId,updatedProgress))
   }
 
+  const handleDeleteTodo = (id) => {
+    console.log(id)
+    dispatch(deleteTodo(id))
+  }
 
   return(
     <Box label={label}>
@@ -46,6 +48,7 @@ const TaskContainer = ({label,id,title,description,date,progress,tags,subtasks})
         </SubtasksDiv>
         <ChangeProgress>
             {["Todo","InProgress","Done"].map((item) => item !== label ? <button key={item} value={[id,item]} onClick={handleChangeProgress}>{item}</button> : null)}
+            <button onClick={() => handleDeleteTodo(id)}>Delete</button>
         </ChangeProgress>
     </Box>
   )

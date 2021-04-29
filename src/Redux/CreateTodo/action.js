@@ -5,6 +5,7 @@ import {
   ADD_SUBTASK,
   ADD_TAGS,
   ADD_TITLE,
+  RESET_FORM,
   UPDATE_SUBTASKS_LIST,
 } from './actionTypes';
 
@@ -54,5 +55,11 @@ export const addTags = (payload) => {
   return {
     type: ADD_TAGS,
     payload,
+  };
+};
+
+export const resetForm = () => {
+  return {
+    type: RESET_FORM,
   };
 };

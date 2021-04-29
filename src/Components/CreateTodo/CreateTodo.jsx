@@ -7,10 +7,10 @@ import { Subtasks } from './Subtasks'
 import { TagsAndProgress } from './TagsAndProgress'
 
 const CreateTodo = () => {
-  const title = useSelector(state => state.title);
-  const description = useSelector(state => state.description);
-  const date = useSelector(state => state.date);
-  const state = useSelector(state => state);
+  const title = useSelector(state => state.createTodo.title);
+  const description = useSelector(state => state.createTodo.description);
+  const date = useSelector(state => state.createTodo.date);
+  const createTodo = useSelector(state => state.createTodo);
 
   const dispatch = useDispatch();
 
@@ -28,7 +28,7 @@ const CreateTodo = () => {
   }
 
   const handleCreateTask = () => {
-    addTodo(state);
+    dispatch(addTodo(createTodo));
   }
   
   return(

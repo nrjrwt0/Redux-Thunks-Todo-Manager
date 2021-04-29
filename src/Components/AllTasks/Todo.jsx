@@ -6,18 +6,12 @@ import { getTodo, getTodoFailure, getTodoRequest, getTodoSuccess } from '../../R
 import { TaskContainer } from './TaskContainer';
 
 const Todo = () => {
-  // const [todos,setTodos] = useState([]);
   const todos = useSelector(state => state.todo.todos)
   
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // dispatch(getTodoRequest());
-    // axios.get(`https://json-server-mocker-neeraj-data.herokuapp.com/todoManager?progress=Todo`).then((res) => {console.log(res.data); setTodos(res.data); dispatch(getTodoSuccess())})
-    // .catch(() => dispatch(getTodoFailure()));
-
     dispatch(getTodo('Todo'))
-
   },[dispatch])
 
   return(
@@ -27,6 +21,7 @@ const Todo = () => {
         <div>
           {todos.map(todo =><TaskContainer key={todo.id} label="Todo" {...todo}/>)}
         </div>
+        {todos.length === 0 ? <p>Empty!</p> : null}
       </div>
     </Conatiner>
   )

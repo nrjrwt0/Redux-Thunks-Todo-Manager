@@ -10,7 +10,7 @@ const initState = {
 }
 
 const Subtasks = () => {
-  const allSubTasksData = useSelector(state => state.subtasks)
+  const allSubTasksData = useSelector(state => state.createTodo.subtasks)
   const [subtask,setSubtask] = useState(initState);
   const [isEmpty,setIsEmpty] = useState(false);
 

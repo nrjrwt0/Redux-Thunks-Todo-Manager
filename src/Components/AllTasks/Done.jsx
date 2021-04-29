@@ -11,10 +11,6 @@ const Done = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // dispatch(getTodoRequest());
-    // axios.get(`https://json-server-mocker-neeraj-data.herokuapp.com/todoManager?progress=Done`).then((res) => {console.log(res.data); setTodos(res.data); dispatch(getTodoSuccess())})
-    // .catch(() => dispatch(getTodoFailure()));
-
     dispatch(getTodo('Done'))
   },[dispatch])
 
@@ -25,6 +21,7 @@ const Done = () => {
         <div>
           {doneTodos.map(todo =><TaskContainer key={todo.id} label="Done" {...todo}/>)}
         </div>
+        {doneTodos.length === 0 ? <p>Empty!</p> : null}
       </div>
     </Conatiner>
   )

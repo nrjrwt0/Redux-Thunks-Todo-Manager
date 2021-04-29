@@ -6,9 +6,15 @@ import {
   CHANGE_PROGRESS_FAILURE,
   CHANGE_PROGRESS_REQUEST,
   CHANGE_PROGRESS_SUCCESS,
+  DELETE_TODO_FAILURE,
+  DELETE_TODO_REQUEST,
+  DELETE_TODO_SUCCESS,
+  Done,
   GET_TODO_FAILURE,
   GET_TODO_REQUEST,
   GET_TODO_SUCCESS,
+  InProgress,
+  Todo,
 } from './actionTypes';
 
 export const getTodoRequest = () => {
@@ -82,6 +88,41 @@ export const addTodo = (payload) => (dispatch) => {
     });
 };
 
+export const deleteTodoRequest = () => {
+  return {
+    type: DELETE_TODO_REQUEST,
+  };
+};
+
+export const deleteTodoSuccess = () => {
+  return {
+    type: DELETE_TODO_SUCCESS,
+  };
+};
+
+export const deleteTodoFailure = () => {
+  return {
+    type: DELETE_TODO_FAILURE,
+  };
+};
+
+export const deleteTodo = (id) => (dispatch) => {
+  dispatch(deleteTodoRequest());
+  axios
+    .delete(
+      `https://json-server-mocker-neeraj-data.herokuapp.com/todoManager/${id}`
+    )
+    .then((res) => {
+      dispatch(deleteTodoSuccess());
+      dispatch(getTodo(Todo));
+      dispatch(getTodo(InProgress));
+      dispatch(getTodo(Done));
+    })
+    .catch(() => {
+      dispatch(deleteTodoFailure());
+    });
+};
+
 export const changeProgressRequest = () => {
   return {
     type: CHANGE_PROGRESS_REQUEST,
@@ -111,6 +152,9 @@ export const changeProgress = (todoId, updatedProgress) => (dispatch) => {
     )
     .then((res) => {
       dispatch(changeProgressSuccess());
+      dispatch(getTodo(Todo));
+      dispatch(getTodo(InProgress));
+      dispatch(getTodo(Done));
     })
     .catch(() => {
       dispatch(changeProgressFailure());

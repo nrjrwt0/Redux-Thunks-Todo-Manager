@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { getTodoFailure, getTodoRequest, getTodoSuccess } from '../../Redux/Todos/action';
+import { getTodo, getTodoFailure, getTodoRequest, getTodoSuccess } from '../../Redux/Todos/action';
 import { TaskContainer } from './TaskContainer';
 
 const Categories = ({label}) => {
@@ -11,9 +11,11 @@ const Categories = ({label}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getTodoRequest());
-    axios.get(`https://json-server-mocker-neeraj-data.herokuapp.com/todoManager?progress=${label}`).then((res) => {console.log(res.data); setTodos(res.data); dispatch(getTodoSuccess())})
-    .catch(() => dispatch(getTodoFailure()));
+    // dispatch(getTodoRequest());
+    // axios.get(`https://json-server-mocker-neeraj-data.herokuapp.com/todoManager?progress=${label}`).then((res) => {console.log(res.data); setTodos(res.data); dispatch(getTodoSuccess())})
+    // .catch(() => dispatch(getTodoFailure()));
+    dispatch(getTodo(label))
+
   },[dispatch])
 
   return(
