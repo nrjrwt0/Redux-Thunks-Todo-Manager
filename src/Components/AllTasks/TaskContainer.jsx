@@ -60,7 +60,7 @@ export {TaskContainer}
 const Box = styled.div`
   border:1px solid #333;
   padding:12px 8px;
-  margin:6px 0px;
+  margin:14px 0px;
 
   & > div:first-child{
     text-align:right;
@@ -93,6 +93,7 @@ const Box = styled.div`
   }
   & > p{
     font-size:14px;
+    margin:12px 0px;
   }
 
 `

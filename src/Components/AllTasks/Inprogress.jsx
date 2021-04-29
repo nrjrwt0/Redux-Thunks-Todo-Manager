@@ -22,7 +22,7 @@ const Inprogress = () => {
         <div>
           {inProgressTodos.map(todo =><TaskContainer key={todo.id} label="InProgress" {...todo}/>)}
         </div>
-        {inProgressTodos.length === 0 ? <p>Empty!</p> : null}
+        {inProgressTodos.length === 0 ? <P>Empty!</P> : null}
       </div>
     </Conatiner>
   )
@@ -47,4 +47,10 @@ const Conatiner = styled.div`
       padding:10px 16px;
    }
   }
+`
+
+const P = styled.p`
+  text-align:center;
+  margin:6px 0px 12px;
+  opacity:0.8;
 `
