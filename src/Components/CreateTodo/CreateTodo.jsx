@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
-import { addDate, addDescription, addTitle } from '../../Redux/CreateTodo/action'
+import { addDate, addDescription, addTitle, resetForm } from '../../Redux/CreateTodo/action'
 import { addTodo } from '../../Redux/Todos/action'
 import { Subtasks } from './Subtasks'
 import { TagsAndProgress } from './TagsAndProgress'
@@ -30,6 +30,10 @@ const CreateTodo = () => {
   const handleCreateTask = () => {
     dispatch(addTodo(createTodo));
   }
+
+  const handleResetForm = () => {
+    dispatch(resetForm());
+  }
   
   return(
     <Container>
@@ -48,7 +52,11 @@ const CreateTodo = () => {
             <input onChange={handleChange} id="date" type="date" name="date" placeholder="date"/>
           </div>
           <TagsAndProgress />
-          <button onClick={handleCreateTask}>Create New Task</button>
+          <span>
+            <button onClick={handleCreateTask}>Create New Task</button>
+            <br/>
+            <span onClick={handleResetForm}>Reset</span>
+          </span>
         </Right>
       </div>
     </Container>
@@ -109,7 +117,15 @@ const Right = styled.div`
   flex-direction:column;
   justify-content:space-around;
   align-items:center;
-  & > button{
+
+  & > span > span{
+    cursor: pointer;
+    font-size:17px;
+    color: #c15050;
+    text-decoration:underline;
+  }
+
+  & > span > button{
     background-color:#c15050;
     color:white;
     padding:14px 22px;
@@ -118,6 +134,8 @@ const Right = styled.div`
     font-weight:650;
     border-radius:6px;
     border:none;
+    margin-top:24px;
+    margin-bottom:16px;
   }
   & > div:first-child{
     label{

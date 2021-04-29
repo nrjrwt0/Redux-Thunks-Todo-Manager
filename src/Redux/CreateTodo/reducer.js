@@ -74,7 +74,7 @@ export const createTodoReducer = (state = initState, { type, payload }) => {
     }
     case RESET_FORM: {
       return {
-        initState,
+        ...initState,
       };
     }
     default:
