@@ -87,6 +87,7 @@ export {Subtasks}
 const Container = styled.div`
   width:80%;
   margin-top:24px;
+  flex:2;
 `
 const Box = styled.form`
   display:flex;
@@ -96,8 +97,9 @@ const Box = styled.form`
       padding:11px 14px;
       font-size:14px;
       font-weight:600;
-      background-color:#314e52;
+      background-color:#487e95;
       border:none;
+      border-radius:4px;
       cursor: pointer;
       color:white;
       margin:0px 8px;
@@ -105,7 +107,8 @@ const Box = styled.form`
     }
     &  > div{
     width:87%;
-    background-color:#bb8082;
+    border-radius:4px;
+    background-color:#487e95;
     display:flex;
     justify-content:space-around;
     align-items:center;
@@ -120,19 +123,19 @@ const Box = styled.form`
       padding:6px ;
       font-size:14px;
       font-weight:600;
-      background-color:transparent;
+      background-color:#487e95;
       border:none;
       outline:none;
       color:white;
     }
     input[type=text]:focus{
-      background-color:transparent;
+      background-color:#487e95;
       border:none;
       outline:none;
       color:white;
     }
     input[type=text].visited{
-      background-color:transparent;
+      background-color:#487e95;
       border:none;
       outline:none;
       color:white;
@@ -152,13 +155,15 @@ const SubtasksDiv = styled.div`
     margin:10px auto;
     display:flex;
     justify-content:space-between;
-    border:2px solid #bb8082;
+    border:2px solid #487e95;
+    border-radius:4px;
     div{
       display:flex;
       justify-content:space-around;
       align-items:center;
       button{
-        padding:0px 2px;
+        padding:0px 4px;
+        font-size:15px;
         background-color:transparent;
         color:teal;
         border:none;
