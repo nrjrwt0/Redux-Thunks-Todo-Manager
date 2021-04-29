@@ -10,7 +10,7 @@ const TagsAndProgress = () => {
           <input type="radio" name="progress" value="Todo" id="todo"/>
           <label htmlFor="todo">Todo</label>
           <br/>
-          <input type="radio" name="progress" value="In Progress" id="inProgress"/>
+          <input type="radio" name="progress" value="InProgress" id="inProgress"/>
           <label htmlFor="inProgress">In Progress</label>
           <br/>
           <input type="radio" name="progress" value="Done" id="done"/>

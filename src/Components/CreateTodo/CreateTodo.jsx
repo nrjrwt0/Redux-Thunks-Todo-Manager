@@ -1,10 +1,11 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { Subtasks } from './Subtasks'
 import { TagsAndProgress } from './TagsAndProgress'
 
 const CreateTodo = () => {
-  
+  const title = useSelector(state => state.title);
 
   
   return(
@@ -107,6 +108,7 @@ const Right = styled.div`
       padding:3px 4px;
       font-weight:bold;
       font-size:14px;
+      outline:none;
     }
     input[type=date]::-webkit-calendar-picker-indicator {
       cursor: pointer;
