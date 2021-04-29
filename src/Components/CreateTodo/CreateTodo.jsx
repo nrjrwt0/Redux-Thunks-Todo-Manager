@@ -1,28 +1,45 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
+import { addDate, addDescription, addTitle } from '../../Redux/CreateTodo/action'
 import { Subtasks } from './Subtasks'
 import { TagsAndProgress } from './TagsAndProgress'
 
 const CreateTodo = () => {
   const title = useSelector(state => state.title);
+  const description = useSelector(state => state.description);
+  const date = useSelector(state => state.date);
 
+
+  const dispatch = useDispatch();
+
+  const handleChange = (e) => {
+    const {name,value} = e.target;
+
+    if(name === "title"){
+      dispatch(addTitle(value));
+    } else if(name === "description"){
+      dispatch(addDescription(value));
+    } else if(name === "date"){
+      dispatch(addDate(value));
+    }
+  }
   
   return(
     <Container>
       <div>
         <Left>
           <div>
-            <input type="text" placeholder="Title"/>
-            <textarea style={{resize: "none"}} cols="27" rows="4" placeholder="Description"></textarea>
+            <input onChange={handleChange} value={title} type="text" name="title" placeholder="Title"/>
+            <textarea onChange={handleChange} value={description} style={{resize: "none"}} cols="27" rows="4" name="description" placeholder="Description"></textarea>
           </div>
           <Subtasks />
         </Left>
 
         <Right>
           <div>
-            <label htmlFor="date">Date: </label>
-            <input id="date" type="date" placeholder="date"/>
+            <label htmlFor="date" onChange={handleChange} value={date}>Date: </label>
+            <input onChange={handleChange} id="date" type="date" name="date" placeholder="date"/>
           </div>
           <TagsAndProgress />
           <button>Create Task</button>
