@@ -1,8 +1,20 @@
+import axios from 'axios';
 import React from 'react'
 import styled from 'styled-components';
 
-const TaskContainer = ({label,title,description,date,progress,tags,subtasks}) => {
+const TaskContainer = ({label,id,title,description,date,progress,tags,subtasks}) => {
   const {personal,official,others} = tags;
+
+  const handleChangeProgress = (e) => {
+    const value  = e.target.value;
+    const [todoId,updatedProgress] = value.split(',') ;
+    console.log(todoId,updatedProgress)
+    axios.patch(`https://json-server-mocker-neeraj-data.herokuapp.com/todoManager/${todoId}`,{
+      progress: updatedProgress
+    })
+  }
+
+
   return(
     <Box label={label}>
       <div>
@@ -28,6 +40,9 @@ const TaskContainer = ({label,title,description,date,progress,tags,subtasks}) =>
           ) 
           })}
         </SubtasksDiv>
+        <ChangeProgress>
+            {["Todo","InProgress","Done"].map((item) => item !== label ? <button value={[id,item]} onClick={handleChangeProgress}>{item}</button> : null)}
+        </ChangeProgress>
     </Box>
   )
 }
@@ -69,6 +84,10 @@ const Box = styled.div`
       border:none;
     }
   }
+  & > p{
+    font-size:14px;
+  }
+
 `
 
 const SubtasksDiv = styled.div`
@@ -96,4 +115,20 @@ const SubtasksDiv = styled.div`
       }
     }
   }
+`
+
+const ChangeProgress = styled.div`
+  margin-top:14px;
+  text-align:right;
+    button{
+      padding:4px 6px;
+      border-radius:2px;
+      font-weight:600;
+      margin-right:4px;
+      margin-bottom:6px;
+      background-color:transparent;
+      color:white;
+      cursor: pointer;
+      border:1px solid #487e95;
+    }
 `
