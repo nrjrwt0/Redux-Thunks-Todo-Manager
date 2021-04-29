@@ -85,16 +85,17 @@ const Subtasks = () => {
 export {Subtasks}
 
 const Container = styled.div`
-  width:84%;
-  margin-top:22px;
+  width:80%;
+  margin-top:24px;
 `
 const Box = styled.form`
   display:flex;
   justify-content:space-around;
   align-items:center;
     & > button{
-      padding:8px 14px;
+      padding:11px 14px;
       font-size:14px;
+      font-weight:600;
       background-color:#314e52;
       border:none;
       cursor: pointer;
@@ -109,7 +110,7 @@ const Box = styled.form`
     justify-content:space-around;
     align-items:center;
     margin:16px auto;
-    padding:2px 10px;
+    padding:6px 10px;
     input[type=checkbox]{
       width:15px;
       height:15px;
@@ -118,7 +119,7 @@ const Box = styled.form`
     input[type=text]{
       padding:6px ;
       font-size:14px;
-      font-weight:500;
+      font-weight:600;
       background-color:transparent;
       border:none;
       outline:none;
@@ -146,7 +147,7 @@ const SubtasksDiv = styled.div`
   overflow-y:scroll;
   & > div{
     width:100%;
-    padding:7px 10px;
+    padding:10px 12px;
     font-size:16px;
     margin:10px auto;
     display:flex;

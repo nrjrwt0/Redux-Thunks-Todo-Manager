@@ -13,7 +13,7 @@ const CreateTodo = () => {
         <Left>
           <div>
             <input type="text" placeholder="Title"/>
-            <textarea style={{resize: "none"}} cols="24" rows="3" placeholder="Description"></textarea>
+            <textarea style={{resize: "none"}} cols="27" rows="4" placeholder="Description"></textarea>
           </div>
           <Subtasks />
         </Left>
@@ -38,7 +38,7 @@ const Container = styled.div`
     display:flex;
     & > div{
       flex:1;
-      /* border:1px solid red; */
+      border:1px solid red;
       text-align:center;
       padding:10px;
     }
@@ -56,11 +56,13 @@ const Left = styled.div`
       border:2px solid #487e95;
       color:white;
       outline:none;
-      padding:8px 10px;
+      padding:10px 16px;
       font-weight:bold;
+      font-size:15px;
     }
     input[type=text]{
-      width:66%;
+      width:68%;
+      font-size:16px;
       display:inline-block;
       margin:30px auto;
     }
