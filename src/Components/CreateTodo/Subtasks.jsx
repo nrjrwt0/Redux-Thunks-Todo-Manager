@@ -11,7 +11,6 @@ const initState = {
 
 const Subtasks = () => {
   const allSubTasksData = useSelector(state => state.subtasks)
-  const [subTasksData,setSubTasksData] = useState([]);
   const [subtask,setSubtask] = useState(initState);
   const [isEmpty,setIsEmpty] = useState(false);
 
@@ -45,24 +44,17 @@ const Subtasks = () => {
       ...subtask
     }
     dispatch(addSubtask(payload))
-    // setSubTasksData([payload,...subTasksData]);
     setSubtask(initState)
   }
 
   const handleStatusChange = (id) => {
     const updatedTasksData = allSubTasksData.map((subtask) => subtask.id === id ? {...subtask,status: !subtask.status} : subtask);
     dispatch(updateSubtasksList(updatedTasksData))
-    // setSubTasksData(updatedTasksData)
   }
   const handleDelete = (id) => {
     const updatedTasksData = allSubTasksData.filter((subtask) => subtask.id !== id);
     dispatch(updateSubtasksList(updatedTasksData))
-    // setSubTasksData(updatedTasksData)
   }
-  // const handleChangeSubtask = (id) => {
-  //   const updatedTasksData = subTasksData.map((subtask) => subtask.id === id ? {...subtask,status: !subtask.status} : subtask);
-  //   setSubTasksData(updatedTasksData)
-  // }
 
   return(
     <Container>

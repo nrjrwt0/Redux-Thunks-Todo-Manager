@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { addDate, addDescription, addTitle } from '../../Redux/CreateTodo/action'
+import { addTodo } from '../../Redux/Todos/action'
 import { Subtasks } from './Subtasks'
 import { TagsAndProgress } from './TagsAndProgress'
 
@@ -9,9 +10,10 @@ const CreateTodo = () => {
   const title = useSelector(state => state.title);
   const description = useSelector(state => state.description);
   const date = useSelector(state => state.date);
-
+  const state = useSelector(state => state);
 
   const dispatch = useDispatch();
+
 
   const handleChange = (e) => {
     const {name,value} = e.target;
@@ -23,6 +25,10 @@ const CreateTodo = () => {
     } else if(name === "date"){
       dispatch(addDate(value));
     }
+  }
+
+  const handleCreateTask = () => {
+    addTodo(state);
   }
   
   return(
@@ -42,7 +48,7 @@ const CreateTodo = () => {
             <input onChange={handleChange} id="date" type="date" name="date" placeholder="date"/>
           </div>
           <TagsAndProgress />
-          <button>Create Task</button>
+          <button onClick={handleCreateTask}>Create New Task</button>
         </Right>
       </div>
     </Container>
