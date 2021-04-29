@@ -1,6 +1,6 @@
 import { Route, Switch } from "react-router-dom"
 import styled from "styled-components"
-import { CreateTodo } from "../Components/CreateTodo"
+import { CreateTodo } from "../Components/CreateTodo/CreateTodo"
 import { Navbar } from "../Components/Navbar"
 import { Sidebar } from "../Components/Sidebar"
 import { DashboardPage } from "./DashboardPage"
@@ -32,7 +32,7 @@ export {Routes}
 
 
 const Conatiner = styled.div`
-  width:80%;
+  width:78%;
   height:80%;
   background-color: #000000d0;
   color: white;
