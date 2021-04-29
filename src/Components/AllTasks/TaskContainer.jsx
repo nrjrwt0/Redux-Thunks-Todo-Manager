@@ -1,17 +1,21 @@
 import axios from 'axios';
 import React from 'react'
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { changeProgress } from '../../Redux/Todos/action';
 
 const TaskContainer = ({label,id,title,description,date,progress,tags,subtasks}) => {
   const {personal,official,others} = tags;
+
+  console.log(label)
+  
+  const dispatch = useDispatch();
 
   const handleChangeProgress = (e) => {
     const value  = e.target.value;
     const [todoId,updatedProgress] = value.split(',') ;
     console.log(todoId,updatedProgress)
-    axios.patch(`https://json-server-mocker-neeraj-data.herokuapp.com/todoManager/${todoId}`,{
-      progress: updatedProgress
-    })
+    dispatch(changeProgress(todoId,updatedProgress))
   }
 
 
@@ -41,7 +45,7 @@ const TaskContainer = ({label,id,title,description,date,progress,tags,subtasks})
           })}
         </SubtasksDiv>
         <ChangeProgress>
-            {["Todo","InProgress","Done"].map((item) => item !== label ? <button value={[id,item]} onClick={handleChangeProgress}>{item}</button> : null)}
+            {["Todo","InProgress","Done"].map((item) => item !== label ? <button key={item} value={[id,item]} onClick={handleChangeProgress}>{item}</button> : null)}
         </ChangeProgress>
     </Box>
   )

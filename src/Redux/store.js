@@ -1,9 +1,11 @@
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { createTodoReducer } from './CreateTodo/reducer';
+import { todoReducer } from './Todos/reducer';
 
 const rootReducer = combineReducers({
   createTodo: createTodoReducer,
+  todo: todoReducer,
 });
 
 export const store = createStore(

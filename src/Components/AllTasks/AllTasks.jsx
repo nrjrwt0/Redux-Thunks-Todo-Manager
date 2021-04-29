@@ -8,13 +8,12 @@ import { Todo } from './Todo'
 const AllTasks = () => {
   return(
     <Container>
-      {/* <Todo />
+      <Todo />
       <Inprogress />
-      <Done /> */}
-      <Categories label="Todo"/>
+      <Done />
+      {/* <Categories label="Todo"/>
       <Categories label="InProgress"/>
-      <Categories label="Done"/>
-
+      <Categories label="Done"/> */}
     </Container>
   )
 }
