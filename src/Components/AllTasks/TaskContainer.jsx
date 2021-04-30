@@ -48,7 +48,8 @@ const TaskContainer = ({label,id,title,description,date,progress,tags,subtasks})
           {subtasks?.map(({id,title,status}) => {
           return (
             <div key={id}>
-              <h5>{title}</h5>
+              {!status ? <h5>{title}</h5> :
+              <h5 style={{textDecoration:"line-through",textDecorationThickness:"2px" }}>{title}</h5>}
               <div>
                 <button onClick={() => handleToggleSubtask(id)}>{status ?<i className="fas fa-check-circle"></i> : <i className="far fa-check-circle"></i> }</button>
                 <button onClick={() => handleDeleteSubtask(id)}><i className="fas fa-trash"></i></button>
