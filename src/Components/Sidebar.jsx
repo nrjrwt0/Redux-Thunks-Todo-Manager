@@ -9,6 +9,7 @@ const Sidebar = () => {
   const todos = useSelector(state => state.todo.todos);
   const inProgress = useSelector(state => state.todo.inProgress);
   const done = useSelector(state => state.todo.done);
+  const filterTag = useSelector(state => state.todo.filterTag)
 
   const dispatch = useDispatch();
 
@@ -24,7 +25,7 @@ const Sidebar = () => {
         <h4>neerajrawat@gmail.com</h4>
       </Details>
 
-      <Tags>
+      <Tags filterTag={filterTag}>
         <button value="all" onClick={addFilterTag}>All <span>{todos.length + inProgress.length + done.length}</span></button>
         <button value="personal" onClick={addFilterTag}>Personal <span>{todos.length}</span></button>
         <button value="official" onClick={addFilterTag}>Official <span>{inProgress.length}</span></button>
@@ -74,12 +75,15 @@ const Tags = styled.div`
   }
   button:nth-child(2){
     background-color:#aad8d3;
+    opacity: ${props => props.filterTag ===  "personal" ? 0.5 : 1}
   }
   button:nth-child(3){
     background-color:#f3bda1;
+    opacity: ${props => props.filterTag ===  "official" ? 0.5 : 1}
   }
   button:nth-child(4){
     background-color:#f05945;
+    opacity: ${props => props.filterTag ===  "others" ? 0.5 : 1}
   }
   button:hover{
     opacity:0.7;
