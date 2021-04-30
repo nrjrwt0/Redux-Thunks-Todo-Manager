@@ -11,7 +11,7 @@ const AuthPage = () => {
           <Route path="/" exact>
             <Login />
           </Route>
-          <Route path="/" path="/login" exact>
+          <Route path="/login" >
             <Login />
           </Route>
           <Route path="/signup">
