@@ -3,10 +3,14 @@ import styled from "styled-components"
 import { CreateTodo } from "../Components/CreateTodo/CreateTodo"
 import { Navbar } from "../Components/Navbar"
 import { Sidebar } from "../Components/Sidebar"
+import { AuthPage } from "./AuthPageRoute"
 import { DashboardPage } from "./DashboardPage"
 const Routes = () => {
+  const isAuth = false;
   
-  return(
+  return( !isAuth ?  <Conatiner>
+      <AuthPage />
+  </Conatiner>  :
     <Conatiner>
       <Sidebar />
 
