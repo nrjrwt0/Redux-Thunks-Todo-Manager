@@ -11,8 +11,10 @@ const CreateTodo = () => {
   const description = useSelector(state => state.createTodo.description);
   const date = useSelector(state => state.createTodo.date);
   const createTodo = useSelector(state => state.createTodo);
+  const isError = useSelector(state => state.todo.isError);
 
   const [isTitleEmpty, setIsTitleEmpty] = useState(false);
+  const [isTaskAdded, setIsTaskAdded] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -35,8 +37,8 @@ const CreateTodo = () => {
       setIsTitleEmpty(true);
       return;
     }
-
     dispatch(addTodo(createTodo));
+    setIsTaskAdded(true);
     dispatch(resetForm());
   }
 
@@ -49,10 +51,14 @@ const CreateTodo = () => {
     const timer = setTimeout(() => {
       setIsTitleEmpty(false);
     },1600)
+    const isTaskAddedTimer = setTimeout(() => {
+      setIsTaskAdded(false);
+    },1600)
     return (() => {
       clearTimeout(timer);
+      clearTimeout(isTaskAddedTimer);
     })
-  },[isTitleEmpty])
+  },[isTitleEmpty,isTaskAdded])
   
   return(
     <Container>
@@ -75,6 +81,8 @@ const CreateTodo = () => {
             <button onClick={handleCreateTask}>Create New Task</button>
             <br/>
             <span onClick={handleResetForm}>Reset</span>
+            {isError ? <p style={{color: "red"}}>Sorry, something went wrong !</p> : 
+            isTaskAdded ? <p>Task Added Successfully !</p> : null}
           </span>
         </Right>
       </div>
@@ -142,6 +150,13 @@ const Right = styled.div`
     font-size:17px;
     color: #c15050;
     text-decoration:underline;
+  }
+
+  & > span > p{
+    margin-top:10px;
+    font-size:17px;
+    font-weight:bolder;
+    color: #29bb89;
   }
 
   & > span > button{
