@@ -1,10 +1,14 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { addFilterByTag } from '../Redux/Todos/action'
 
 const Sidebar = () => {
+
+  const todos = useSelector(state => state.todo.todos);
+  const inProgress = useSelector(state => state.todo.inProgress);
+  const done = useSelector(state => state.todo.done);
 
   const dispatch = useDispatch();
 
@@ -21,10 +25,10 @@ const Sidebar = () => {
       </Details>
 
       <Tags>
-        <button value="all" onClick={addFilterTag}>All <span>{4}</span></button>
-        <button value="personal" onClick={addFilterTag}>Personal <span>{1}</span></button>
-        <button value="official" onClick={addFilterTag}>Official <span>{2}</span></button>
-        <button value="others" onClick={addFilterTag}>Others <span>{1}</span></button>
+        <button value="all" onClick={addFilterTag}>All <span>{todos.length + inProgress.length + done.length}</span></button>
+        <button value="personal" onClick={addFilterTag}>Personal <span>{todos.length}</span></button>
+        <button value="official" onClick={addFilterTag}>Official <span>{inProgress.length}</span></button>
+        <button value="others" onClick={addFilterTag}>Others <span>{done.length}</span></button>
       </Tags>
 
       <Logout>
