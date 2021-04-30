@@ -1,8 +1,18 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { addFilterByTag } from '../Redux/Todos/action'
 
 const Sidebar = () => {
+
+  const dispatch = useDispatch();
+
+  const addFilterTag = (e) => {
+    const selectedTag = e.target.value;
+    dispatch(addFilterByTag(selectedTag))
+  }
+
   return(
     <Container>
       <Details>
@@ -11,10 +21,10 @@ const Sidebar = () => {
       </Details>
 
       <Tags>
-        <button>All <span>{4}</span></button>
-        <button>Personal <span>{1}</span></button>
-        <button>Official <span>{2}</span></button>
-        <button>Others <span>{1}</span></button>
+        <button value="all" onClick={addFilterTag}>All <span>{4}</span></button>
+        <button value="personal" onClick={addFilterTag}>Personal <span>{1}</span></button>
+        <button value="official" onClick={addFilterTag}>Official <span>{2}</span></button>
+        <button value="others" onClick={addFilterTag}>Others <span>{1}</span></button>
       </Tags>
 
       <Logout>

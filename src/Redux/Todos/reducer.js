@@ -1,4 +1,5 @@
 import {
+  ADD_FILTER_BY_TAG,
   ADD_TODO_FAILURE,
   ADD_TODO_REQUEST,
   ADD_TODO_SUCCESS,
@@ -25,7 +26,7 @@ const initState = {
   done: [],
   isLoading: false,
   isError: false,
-  filterBy: '',
+  filterTag: '',
 };
 
 export const todoReducer = (state = initState, { type, payload }) => {
@@ -149,6 +150,12 @@ export const todoReducer = (state = initState, { type, payload }) => {
         ...state,
         isLoading: false,
         isError: true,
+      };
+    }
+    case ADD_FILTER_BY_TAG: {
+      return {
+        ...state,
+        filterTag: payload,
       };
     }
     default:

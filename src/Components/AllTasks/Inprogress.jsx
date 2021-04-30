@@ -8,18 +8,17 @@ import { TaskContainer } from './TaskContainer';
 const Inprogress = () => {
   const [todos,setTodos] = useState([]);
   const inProgressTodos = useSelector(state => state.todo.inProgress)
-  const filterBy = useSelector(state => state.todo.filterBy)
+  const filterTag = useSelector(state => state.todo.filterTag)
   
   const dispatch = useDispatch();
 
   const filterTodos = (item) => {
     let filterTagStatus = true;
-
-    if(filterBy === "personal"){
+    if(filterTag === "personal"){
       filterTagStatus = item.tags.personal;
-    } else if(filterBy === "official"){
+    } else if(filterTag === "official"){
       filterTagStatus = item.tags.official;
-    } else if(filterBy === "others"){
+    } else if(filterTag === "others"){
       filterTagStatus = item.tags.others;
     }
     return filterTagStatus;

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {
+  ADD_FILTER_BY_TAG,
   ADD_TODO_FAILURE,
   ADD_TODO_REQUEST,
   ADD_TODO_SUCCESS,
@@ -247,4 +248,13 @@ export const toggleSubtask = (id, updatedSubtasks) => (dispatch) => {
     .catch(() => {
       dispatch(toggleSubtaskFailure());
     });
+};
+
+// FILTER BY TAG
+
+export const addFilterByTag = (payload) => {
+  return {
+    type: ADD_FILTER_BY_TAG,
+    payload,
+  };
 };
