@@ -7,8 +7,23 @@ import { TaskContainer } from './TaskContainer';
 
 const Done = () => {
   const doneTodos = useSelector(state => state.todo.done);
+  const filterBy = useSelector(state => state.todo.filterBy)
   
   const dispatch = useDispatch();
+
+  const filterTodos = (item) => {
+    let filterTagStatus = true;
+
+    if(filterBy === "personal"){
+      filterTagStatus = item.tags.personal;
+    } else if(filterBy === "official"){
+      filterTagStatus = item.tags.official;
+    } else if(filterBy === "others"){
+      filterTagStatus = item.tags.others;
+    }
+    return filterTagStatus;
+  }
+  
 
   useEffect(() => {
     dispatch(getTodo('Done'))
@@ -19,7 +34,7 @@ const Done = () => {
       <div>
         <h2>Done</h2>
         <div>
-          {doneTodos.map(todo =><TaskContainer key={todo.id} label="Done" {...todo}/>)}
+          {doneTodos.filter(filterTodos).map(todo =><TaskContainer key={todo.id} label="Done" {...todo}/>)}
         </div>
         {doneTodos.length === 0 ? <P>Empty!</P> : null}
       </div>

@@ -25,6 +25,7 @@ const initState = {
   done: [],
   isLoading: false,
   isError: false,
+  filterBy: '',
 };
 
 export const todoReducer = (state = initState, { type, payload }) => {

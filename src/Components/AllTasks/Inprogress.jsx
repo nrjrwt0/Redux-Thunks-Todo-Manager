@@ -8,8 +8,22 @@ import { TaskContainer } from './TaskContainer';
 const Inprogress = () => {
   const [todos,setTodos] = useState([]);
   const inProgressTodos = useSelector(state => state.todo.inProgress)
+  const filterBy = useSelector(state => state.todo.filterBy)
   
   const dispatch = useDispatch();
+
+  const filterTodos = (item) => {
+    let filterTagStatus = true;
+
+    if(filterBy === "personal"){
+      filterTagStatus = item.tags.personal;
+    } else if(filterBy === "official"){
+      filterTagStatus = item.tags.official;
+    } else if(filterBy === "others"){
+      filterTagStatus = item.tags.others;
+    }
+    return filterTagStatus;
+  }
 
   useEffect(() => {
     dispatch(getTodo('InProgress'))
@@ -20,7 +34,7 @@ const Inprogress = () => {
       <div>
         <h2>InProgress</h2>
         <div>
-          {inProgressTodos.map(todo =><TaskContainer key={todo.id} label="InProgress" {...todo}/>)}
+          {inProgressTodos.filter(filterTodos).map(todo =><TaskContainer key={todo.id} label="InProgress" {...todo}/>)}
         </div>
         {inProgressTodos.length === 0 ? <P>Empty!</P> : null}
       </div>
