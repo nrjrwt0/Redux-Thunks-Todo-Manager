@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux"
 import { Route, Switch } from "react-router-dom"
 import styled from "styled-components"
 import { CreateTodo } from "../Components/CreateTodo/CreateTodo"
@@ -6,9 +7,10 @@ import { Sidebar } from "../Components/Sidebar"
 import { AuthPage } from "./AuthPageRoute"
 import { DashboardPage } from "./DashboardPage"
 const Routes = () => {
-  const isAuth = false;
+
+  const isUserAuth = useSelector(state => state.auth.isUserAuth);
   
-  return( !isAuth ?  <Conatiner>
+  return( !isUserAuth ?  <Conatiner>
       <AuthPage />
   </Conatiner>  :
     <Conatiner>

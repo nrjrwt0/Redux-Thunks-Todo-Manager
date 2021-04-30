@@ -70,8 +70,8 @@ const SignUp = () => {
       <div>
       <h1>Sign Up</h1>
         <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Name" name="name" value={formData.name} onChange={handleChange}/>
-        <input type="text" placeholder="Email" name="email" value={formData.email} onChange={handleChange}/>
+        <input type="text" placeholder="Name" name="name" maxLength={14} value={formData.name} onChange={handleChange}/>
+        <input type="text" placeholder="Email" name="email" maxLength={18} value={formData.email} onChange={handleChange}/>
           <input type="text" placeholder="Password" name="password" value={formData.password} onChange={handleChange}/>
           <input type="text" placeholder="Confirm Password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange}/>
           <input type="submit" value="Signup"/>

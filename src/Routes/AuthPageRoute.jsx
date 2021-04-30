@@ -1,11 +1,15 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Redirect, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import { Login } from "../Components/Auth/Login"
 import { SignUp } from "../Components/Auth/SignUp"
 
 const AuthPage = () => {
-  return(<Container>
+
+
+  return( 
+    <Container>
         <h1>Todo Manager</h1>
         <Wrapper>
           <Route path="/" exact>

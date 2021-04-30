@@ -6,6 +6,7 @@ import {
   SIGNUP_FAILURE,
   SIGNUP_REQUEST,
   SIGNUP_SUCCESS,
+  LOGOUT_SUCCESS,
 } from './actionTypes';
 
 export const loginRequest = () => {
@@ -68,3 +69,9 @@ export const signUpFailure = () => {
 //   userData.push(payload);
 //   dispatch(signUpSuccess(userData));
 // };
+
+export const logoutSuccess = () => {
+  return {
+    type: LOGOUT_SUCCESS,
+  };
+};
