@@ -63,7 +63,7 @@ const CreateTodo = () => {
   return(
     <Container>
       <div>
-        <Left>
+        <Left isTitleEmpty={isTitleEmpty}>
           <div>
             <input onChange={handleChange} value={title} type="text" name="title" placeholder={!isTitleEmpty ? "Title" : "Please add title"}/>
             <textarea onChange={handleChange} value={description} style={{resize: "none"}} cols="27" rows="4" name="description" placeholder="Description"></textarea>
@@ -131,6 +131,9 @@ const Left = styled.div`
       font-size:16px;
       display:inline-block;
       margin:30px auto;
+    }
+    input[type=text]::placeholder{
+     color: ${props => props.isTitleEmpty ? "#c15050" : null}
     }
     input[type=date]{
       padding:6px;
