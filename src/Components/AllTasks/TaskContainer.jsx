@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { changeProgress, deleteTodo } from '../../Redux/Todos/action';
+import { changeProgress, deleteTodo, deleteSubtask } from '../../Redux/Todos/action';
 
 const TaskContainer = ({label,id,title,description,date,progress,tags,subtasks}) => {
   const {personal,official,others} = tags;
@@ -19,6 +19,17 @@ const TaskContainer = ({label,id,title,description,date,progress,tags,subtasks})
   const handleDeleteTodo = (id) => {
     console.log(id)
     dispatch(deleteTodo(id))
+  }
+
+  const handleToggleSubtask = (subId) => {
+    console.log(subtasks)
+    const updatedSubtasks = subtasks.map(item => item.id === subId ? {...item,status: !item.status} : item);
+    dispatch(deleteSubtask(id,updatedSubtasks))
+  }
+
+  const handleDeleteSubtask = (subId) => {
+    const updatedSubtasks = subtasks.filter(item => item.id !== subId);
+    dispatch(deleteSubtask(id,updatedSubtasks))
   }
 
   return(
@@ -39,8 +50,8 @@ const TaskContainer = ({label,id,title,description,date,progress,tags,subtasks})
             <div key={id}>
               <h5>{title}</h5>
               <div>
-                <button>{status ?<i className="fas fa-check-circle"></i> : <i className="far fa-check-circle"></i> }</button>
-                <button><i className="fas fa-trash"></i></button>
+                <button onClick={() => handleToggleSubtask(id)}>{status ?<i className="fas fa-check-circle"></i> : <i className="far fa-check-circle"></i> }</button>
+                <button onClick={() => handleDeleteSubtask(id)}><i className="fas fa-trash"></i></button>
               </div>
             </div>
           ) 
@@ -120,6 +131,7 @@ const SubtasksDiv = styled.div`
         background-color:transparent;
         color:teal;
         border:none;
+        cursor: pointer;
       }
     }
   }

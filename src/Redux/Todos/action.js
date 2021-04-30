@@ -6,6 +6,9 @@ import {
   CHANGE_PROGRESS_FAILURE,
   CHANGE_PROGRESS_REQUEST,
   CHANGE_PROGRESS_SUCCESS,
+  DELETE_SUBTASK_FAILURE,
+  DELETE_SUBTASK_REQUEST,
+  DELETE_SUBTASK_SUCCESS,
   DELETE_TODO_FAILURE,
   DELETE_TODO_REQUEST,
   DELETE_TODO_SUCCESS,
@@ -15,8 +18,12 @@ import {
   GET_TODO_SUCCESS,
   InProgress,
   Todo,
+  TOGGLE_SUBTASK_FAILURE,
+  TOGGLE_SUBTASK_REQUEST,
+  TOGGLE_SUBTASK_SUCCESS,
 } from './actionTypes';
 
+// GET TODOS
 export const getTodoRequest = () => {
   return {
     type: GET_TODO_REQUEST,
@@ -55,6 +62,7 @@ export const getTodo = (label) => (dispatch) => {
     });
 };
 
+// ADD TODOS
 export const addTodoRequest = () => {
   return {
     type: ADD_TODO_REQUEST,
@@ -88,6 +96,7 @@ export const addTodo = (payload) => (dispatch) => {
     });
 };
 
+// DELETE TODOS
 export const deleteTodoRequest = () => {
   return {
     type: DELETE_TODO_REQUEST,
@@ -123,6 +132,7 @@ export const deleteTodo = (id) => (dispatch) => {
     });
 };
 
+// CHANGE PROGRESS
 export const changeProgressRequest = () => {
   return {
     type: CHANGE_PROGRESS_REQUEST,
@@ -158,5 +168,83 @@ export const changeProgress = (todoId, updatedProgress) => (dispatch) => {
     })
     .catch(() => {
       dispatch(changeProgressFailure());
+    });
+};
+
+// DELETE SUBTASK
+export const deleteSubtaskRequest = () => {
+  return {
+    type: DELETE_SUBTASK_REQUEST,
+  };
+};
+
+export const deleteSubtaskSuccess = () => {
+  return {
+    type: DELETE_SUBTASK_SUCCESS,
+  };
+};
+
+export const deleteSubtaskFailure = () => {
+  return {
+    type: DELETE_SUBTASK_FAILURE,
+  };
+};
+
+export const deleteSubtask = (id, updatedSubtasks) => (dispatch) => {
+  dispatch(deleteSubtaskRequest());
+  axios
+    .patch(
+      `https://json-server-mocker-neeraj-data.herokuapp.com/todoManager/${id}`,
+      {
+        subtasks: updatedSubtasks,
+      }
+    )
+    .then((res) => {
+      dispatch(deleteSubtaskSuccess());
+      dispatch(getTodo(Todo));
+      dispatch(getTodo(InProgress));
+      dispatch(getTodo(Done));
+    })
+    .catch(() => {
+      dispatch(deleteSubtaskFailure());
+    });
+};
+
+// TOGGLE SUBTASK
+export const toggleSubtaskRequest = () => {
+  return {
+    type: TOGGLE_SUBTASK_REQUEST,
+  };
+};
+
+export const toggleSubtaskSuccess = () => {
+  return {
+    type: TOGGLE_SUBTASK_SUCCESS,
+  };
+};
+
+export const toggleSubtaskFailure = () => {
+  return {
+    type: TOGGLE_SUBTASK_FAILURE,
+  };
+};
+
+export const toggleSubtask = (id, updatedSubtasks) => (dispatch) => {
+  dispatch(toggleSubtaskRequest());
+  axios
+    .patch(
+      `https://json-server-mocker-neeraj-data.herokuapp.com/todoManager/${id}`,
+      {
+        subtasks: updatedSubtasks,
+      }
+    )
+    .then((res) => {
+      dispatch(toggleSubtaskSuccess());
+      dispatch(getTodo(Todo));
+      dispatch(getTodo(InProgress));
+      dispatch(getTodo(Done));
+    })
+    .catch(() => {
+      dispatch(toggleSubtaskFailure());
     });
 };
