@@ -29,6 +29,7 @@ const CreateTodo = () => {
 
   const handleCreateTask = () => {
     dispatch(addTodo(createTodo));
+    dispatch(resetForm());
   }
 
   const handleResetForm = () => {
