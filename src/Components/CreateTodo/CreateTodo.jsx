@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { addDate, addDescription, addTitle, resetForm } from '../../Redux/CreateTodo/action'
@@ -11,6 +11,8 @@ const CreateTodo = () => {
   const description = useSelector(state => state.createTodo.description);
   const date = useSelector(state => state.createTodo.date);
   const createTodo = useSelector(state => state.createTodo);
+
+  const [isTitleEmpty, setIsTitleEmpty] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -28,6 +30,12 @@ const CreateTodo = () => {
   }
 
   const handleCreateTask = () => {
+
+    if(title === ""){
+      setIsTitleEmpty(true);
+      return;
+    }
+
     dispatch(addTodo(createTodo));
     dispatch(resetForm());
   }
@@ -35,13 +43,23 @@ const CreateTodo = () => {
   const handleResetForm = () => {
     dispatch(resetForm());
   }
+
+  useEffect(() => {
+    // reseting previous placeholder
+    const timer = setTimeout(() => {
+      setIsTitleEmpty(false);
+    },1600)
+    return (() => {
+      clearTimeout(timer);
+    })
+  },[isTitleEmpty])
   
   return(
     <Container>
       <div>
         <Left>
           <div>
-            <input onChange={handleChange} value={title} type="text" name="title" placeholder="Title"/>
+            <input onChange={handleChange} value={title} type="text" name="title" placeholder={!isTitleEmpty ? "Title" : "Please add title"}/>
             <textarea onChange={handleChange} value={description} style={{resize: "none"}} cols="27" rows="4" name="description" placeholder="Description"></textarea>
           </div>
           <Subtasks />
