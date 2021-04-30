@@ -23,6 +23,8 @@ const Todo = () => {
     return filterTagStatus;
   }
 
+  const filteredTodos = todos.filter(filterTodos);
+
   useEffect(() => {
     dispatch(getTodo('Todo'))
   },[dispatch])
@@ -32,9 +34,9 @@ const Todo = () => {
       <div>
         <h2>Todo</h2>
         <div>
-          {todos.filter(filterTodos).map(todo =><TaskContainer key={todo.id} label="Todo" {...todo}/>)}
+          {filteredTodos.filter(filterTodos).map(todo =><TaskContainer key={todo.id} label="Todo" {...todo}/>)}
         </div>
-        {todos.length === 0 ? <P>Empty!</P> : null}
+        {filteredTodos.length === 0 ? <P>Empty!</P> : null}
       </div>
     </Conatiner>
   )
@@ -64,6 +66,6 @@ const Conatiner = styled.div`
 
 const P = styled.p`
   text-align:center;
-  margin:6px 0px 12px;
+  margin:0px 0px 12px;
   opacity:0.8;
 `

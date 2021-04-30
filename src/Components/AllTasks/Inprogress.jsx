@@ -24,6 +24,9 @@ const Inprogress = () => {
     return filterTagStatus;
   }
 
+  const filteredInProgressTodos = inProgressTodos.filter(filterTodos);
+
+
   useEffect(() => {
     dispatch(getTodo('InProgress'))
   },[dispatch])
@@ -33,9 +36,9 @@ const Inprogress = () => {
       <div>
         <h2>InProgress</h2>
         <div>
-          {inProgressTodos.filter(filterTodos).map(todo =><TaskContainer key={todo.id} label="InProgress" {...todo}/>)}
+          {filteredInProgressTodos.filter(filterTodos).map(todo =><TaskContainer key={todo.id} label="InProgress" {...todo}/>)}
         </div>
-        {inProgressTodos.length === 0 ? <P>Empty!</P> : null}
+        {filteredInProgressTodos.length === 0 ? <P>Empty!</P> : null}
       </div>
     </Conatiner>
   )
@@ -64,6 +67,6 @@ const Conatiner = styled.div`
 
 const P = styled.p`
   text-align:center;
-  margin:6px 0px 12px;
+  margin:0px 0px 12px;
   opacity:0.8;
 `
