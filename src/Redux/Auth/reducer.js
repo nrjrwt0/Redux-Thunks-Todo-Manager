@@ -3,6 +3,7 @@ import {
   LOGIN_FAILURE,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
+  LOGOUT_SUCCESS,
   SIGNUP_FAILURE,
   SIGNUP_REQUEST,
   SIGNUP_SUCCESS,
@@ -29,7 +30,6 @@ export const authReducer = (state = initState, { type, payload }) => {
       };
     }
     case LOGIN_SUCCESS: {
-      console.log(payload);
       saveData('isUserAuth', true);
       saveData('userName', payload.name);
       saveData('userEmail', payload.email);
@@ -68,6 +68,17 @@ export const authReducer = (state = initState, { type, payload }) => {
         ...state,
         isLoading: false,
         isError: true,
+      };
+    }
+    case LOGOUT_SUCCESS: {
+      saveData('isUserAuth', false);
+      saveData('userName', '');
+      saveData('userEmail', '');
+      return {
+        ...state,
+        isUserAuth: false,
+        userName: '',
+        userEmail: '',
       };
     }
     default:

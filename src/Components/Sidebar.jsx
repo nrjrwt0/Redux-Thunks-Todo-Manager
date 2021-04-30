@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { logoutSuccess } from '../Redux/Auth/action'
 import { addFilterByTag } from '../Redux/Todos/action'
 
 const Sidebar = () => {
@@ -11,6 +12,10 @@ const Sidebar = () => {
   const done = useSelector(state => state.todo.done);
   const filterTag = useSelector(state => state.todo.filterTag)
 
+  const userName = useSelector(state => state.auth.userName);
+  const userEmail = useSelector(state => state.auth.userEmail);
+
+
   const dispatch = useDispatch();
 
   const addFilterTag = (e) => {
@@ -18,11 +23,15 @@ const Sidebar = () => {
     dispatch(addFilterByTag(selectedTag))
   }
 
+  const handleLogout = () => {
+    dispatch(logoutSuccess());
+  }
+
   return(
     <Container>
       <Details>
-        <h3>Neeraj Rawat</h3>
-        <h4>neerajrawat@gmail.com</h4>
+        <h3>{userName}</h3>
+        <h4>{userEmail}</h4>
       </Details>
 
       <Tags filterTag={filterTag}>
@@ -33,7 +42,7 @@ const Sidebar = () => {
       </Tags>
 
       <Logout>
-        <button>Logout</button>
+        <button onClick={handleLogout}>Logout</button>
       </Logout>
 
     </Container>
@@ -52,7 +61,6 @@ const Container = styled.div`
 `
 const Details = styled.div`
   flex:3;
-
 `
 const Tags = styled.div`
   flex:8;
