@@ -38,7 +38,6 @@ const Container = styled.div`
   display:flex;
   flex-direction:column;
   width:100%;
-  /* border:1px solid yellow; */
   & > h1{
     text-align:center;
     margin:40px 0px 50px;
@@ -50,7 +49,6 @@ const Container = styled.div`
 const Wrapper = styled.div`
   width:100%;
   height:70%;
-  /* border:1px solid red; */
   display:flex;
   justify-content:space-around;
   align-items:center;
@@ -59,10 +57,8 @@ const Wrapper = styled.div`
     display:flex;
     justify-content:space-around;
     align-items:center;
-    /* border:1px solid blue; */
     height:90%;
     &  > div{
-      /* border:1px solid green; */
       width:74%;
       padding:10px 24px;
       min-height:90%;
@@ -85,6 +81,7 @@ const Wrapper = styled.div`
         }
         input[type=submit]{
           cursor: pointer;
+          background-color:#487e95;
         }
       }
       span{

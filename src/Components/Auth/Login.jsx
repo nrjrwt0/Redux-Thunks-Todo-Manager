@@ -44,7 +44,7 @@ const Login = () => {
 
   return(
     <div>
-      <Container>
+      <div>
         <h1>Login</h1>
           <form onSubmit={handleSubmit}>
             <input required type="email" placeholder="Email" value={email} onChange={(e) => {setEmail(e.target.value)}}/>
@@ -53,16 +53,10 @@ const Login = () => {
           </form>
           {isUserNotExist ? <span style={{color:"red"}}>Sorry! Wrong Credentials</span> : null}
          <span>Don't have an account <Link to="/signup">Sign up</Link> here</span>
-      </Container>
+      </div>
     </div>
   )
 
 }
 
 export {Login}
-
-const Container = styled.div`
-  h1{
-    /* text-align:center; */
-  }
-`
