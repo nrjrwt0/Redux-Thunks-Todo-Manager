@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Redirect, Route } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 import { Login } from "../Components/Auth/Login"
 import { SignUp } from "../Components/Auth/SignUp"
@@ -12,15 +12,20 @@ const AuthPage = () => {
     <Container>
         <h1>Todo Manager</h1>
         <Wrapper>
+          
+        <Switch>
           <Route path="/" exact>
             <Login />
           </Route>
-          <Route path="/login" >
+          <Route path="/login" exact>
             <Login />
           </Route>
-          <Route path="/signup">
+          <Route path="/signup" exact>
             <SignUp />
           </Route>
+          <Redirect to="/"/>
+        </Switch>
+
         </Wrapper>
       </Container>
   )

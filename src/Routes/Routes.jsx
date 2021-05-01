@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux"
-import { Route, Switch } from "react-router-dom"
+import { Redirect, Route, Switch } from "react-router-dom"
 import styled from "styled-components"
 import { CreateTodo } from "../Components/CreateTodo/CreateTodo"
 import { Navbar } from "../Components/Navbar"
@@ -13,20 +13,20 @@ const Routes = () => {
   return( !isUserAuth ?  <Conatiner>
       <AuthPage />
   </Conatiner>  :
+
     <Conatiner>
       <Sidebar />
-
       <Wrapper>
         <Navbar />
-
         <Switch>
-          <Route path="/dashboard">
+          <Route path="/dashboard" exact>
             <DashboardPage />
           </Route>
 
-          <Route path="/create-new-task">
+          <Route path="/create-new-task" exact>
             <CreateTodo/>
           </Route>
+          <Redirect to="/dashboard"/>
         </Switch>
       </Wrapper>
 
