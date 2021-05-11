@@ -18,6 +18,7 @@ const SignUp = () => {
   const [isEmailPresentAlready, setIsEmailPresentAlready] = useState(false);
 
   const [isBothPassMatch, setIsBothPassMatch] = useState(false);
+  const [isCreated, setIsCreated] = useState(false);
 
   const handleChange = (e) => {
     const {name,value} = e.target;
@@ -46,7 +47,7 @@ const SignUp = () => {
     } 
     userData.push(formData);
     dispatch(signUpSuccess(userData));
-
+    setIsCreated(true);
     setFormData(initState);
   }
 
@@ -55,15 +56,21 @@ const SignUp = () => {
       setIsEmailPresentAlready(false)
     },2500)
 
+    const createdTimer = setTimeout(() => {
+      setIsCreated(false)
+    },2500)
+
     const passwordTimer = setTimeout(() => {
       setIsBothPassMatch(false)
     },2500)
     return(() => {
       clearTimeout(emailTimer)
       clearTimeout(passwordTimer)
+      clearTimeout(createdTimer)
+      
     })
 
-  },[isEmailPresentAlready,isBothPassMatch])
+  },[isEmailPresentAlready,isBothPassMatch,isCreated])
 
   return(
     <div>
@@ -76,6 +83,7 @@ const SignUp = () => {
           <input type="text" placeholder="Confirm Password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange}/>
           <input type="submit" value="Signup"/>
         </form>
+        {isCreated ? <span style={{color:"#29bb89"}}>Account created Successfully</span> : null}
         {isBothPassMatch ? <span style={{color:"red"}}>Password doesn't match</span> : null}
         {isEmailPresentAlready ? <span style={{color:"red"}}>Email already exist</span> : null}
         <span>Already have an account <Link to="/login">Login</Link> here</span>
